@@ -1,4 +1,3 @@
-/* General page styling */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -8,60 +7,59 @@ body {
 }
 
 .container {
-    max-width: 600px;
+    max-width: 800px;
     margin: auto;
     background: #fff;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 h1 {
     text-align: center;
+    color: #007bff;
 }
 
-/* Styling for slider containers */
-.slider-container {
-    margin: 20px 0;
-}
-
-.slider-container label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-/* Styling for sliders */
-.slider {
-    width: 100%;
-}
-
-/* Styling for introductory price fields */
-.introductory-price {
+.input-group {
     margin-bottom: 20px;
 }
 
-.introductory-price label, .introductory-price input {
-    margin-right: 10px;
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
 }
 
-/* Styling for result display */
-.result-display {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.result-display h2 {
+.input-group input[type="number"], .input-group input[type="range"] {
+    width: 100%;
+    padding: 8px;
     margin-bottom: 10px;
+}
+
+.input-group input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 25px;
+    background: #ddd;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.input-group input[type="range"]:hover {
+    opacity: 1;
+}
+
+.result-display, .breakdown-display {
+    text-align: left;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #eef2f7;
+    border-radius: 5px;
+    font-size: 0.9em;
 }
 
 #result {
     font-size: 24px;
     font-weight: bold;
-}
-
-/* Responsive design */
-@media (max-width: 600px) {
-    .container {
-        width: 95%;
-        margin: 10px auto;
-    }
 }
