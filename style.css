@@ -1,0 +1,67 @@
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+/* Styling for slider containers */
+.slider-container {
+    margin: 20px 0;
+}
+
+.slider-container label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Styling for sliders */
+.slider {
+    width: 100%;
+}
+
+/* Styling for introductory price fields */
+.introductory-price {
+    margin-bottom: 20px;
+}
+
+.introductory-price label, .introductory-price input {
+    margin-right: 10px;
+}
+
+/* Styling for result display */
+.result-display {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.result-display h2 {
+    margin-bottom: 10px;
+}
+
+#result {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        margin: 10px auto;
+    }
+}
