@@ -4,31 +4,51 @@ function calculateEstimatedRevenue() {
     const percentMonthly = 1 - percentYearly;
     const generalConversionRate = parseFloat(document.getElementById('conversion-rate').value) / 100;
 
+    const avgSubscriptionMonths = parseFloat(document.getElementById('avg-subscription-months').value);
+    const avgSubscriptionYears = parseFloat(document.getElementById('avg-subscription-years').value);
+
     const monthlyPrice = parseFloat(document.getElementById('monthly-price').value);
     const monthlyDiscount = parseFloat(document.getElementById('monthly-intro-discount').value) / 100;
-    const monthlyDiscountPeriod = parseInt(document.getElementById('monthly-intro-period').value, 10);
+    const monthlyDiscountPeriod = parseFloat(document.getElementById('monthly-intro-period').value);
 
     const yearlyPrice = parseFloat(document.getElementById('yearly-price').value);
     const yearlyDiscount = parseFloat(document.getElementById('yearly-intro-discount').value) / 100;
-    const yearlyDiscountPeriod = parseInt(document.getElementById('yearly-intro-period').value, 10);
+    const yearlyDiscountPeriod = parseFloat(document.getElementById('yearly-intro-period').value);
 
-    let monthlyRevenue = monthlyPrice * generalConversionRate * totalUsers * percentMonthly;
-    let yearlyRevenue = yearlyPrice * generalConversionRate * totalUsers * percentYearly;
+    // Calculate monthly revenue
+    let monthlyRevenue = 0;
+    if (avgSubscriptionMonths > 0) {
+        monthlyRevenue = monthlyPrice * generalConversionRate * totalUsers * percentMonthly;
+        // Apply discount for the discount period
+        if (monthlyDiscountPeriod > 0) {
+            const discountedMonths = Math.min(monthlyDiscountPeriod, avgSubscriptionMonths);
+            monthlyRevenue *= ((avgSubscriptionMonths - discountedMonths) + discountedMonths * (1 - monthlyDiscount)) / avgSubscriptionMonths;
+        }
+    }
 
-    // Apply discounts
-    monthlyRevenue *= (1 - monthlyDiscount) * Math.max(1, monthlyDiscountPeriod);
-    yearlyRevenue *= (1 - yearlyDiscount) * Math.max(1, yearlyDiscountPeriod);
+    // Calculate yearly revenue
+    let yearlyRevenue = 0;
+    if (avgSubscriptionYears > 0) {
+        yearlyRevenue = yearlyPrice * generalConversionRate * totalUsers * percentYearly;
+        // Apply discount for the discount period
+        if (yearlyDiscountPeriod > 0) {
+            const discountedYears = Math.min(yearlyDiscountPeriod, avgSubscriptionYears);
+            yearlyRevenue *= ((avgSubscriptionYears - discountedYears) + discountedYears * (1 - yearlyDiscount)) / avgSubscriptionYears;
+        }
+    }
 
     let estimatedRevenue = monthlyRevenue + yearlyRevenue;
 
     document.getElementById('result').textContent = estimatedRevenue.toFixed(2);
     document.getElementById('percent-yearly-value').textContent = `${(percentYearly * 100).toFixed(0)}%`;
 
-    // Breakdown display
+    // Update breakdown display
     let breakdownText = `
         <strong>Total Users:</strong> ${totalUsers}<br>
         <strong>% Yearly:</strong> ${(percentYearly * 100).toFixed(2)}%<br>
         <strong>General Conversion Rate:</strong> ${(generalConversionRate * 100).toFixed(2)}%<br>
+        <strong>Average Subscription Months:</strong> ${avgSubscriptionMonths}<br>
+        <strong>Average Subscription Years:</strong> ${avgSubscriptionYears}<br>
         <strong>Monthly Revenue:</strong> ${monthlyRevenue.toFixed(2)}<br>
         <strong>Yearly Revenue:</strong> ${yearlyRevenue.toFixed(2)}<br>
         <strong>Estimated Total Revenue:</strong> ${estimatedRevenue.toFixed(2)}

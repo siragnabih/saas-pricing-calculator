@@ -3,28 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lifecycle team Pricing Calculator</title>
+    <title>Lifecycle Team Pricing Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>Lifecycle Team Pricing Calculator</h1>
+
         <!-- Total Users -->
         <div class="input-group">
             <label>Total Users:</label>
             <input type="number" id="total-users" value="1000">
         </div>
+
         <!-- Percentage of Users Choosing Yearly -->
         <div class="input-group">
             <label>% Users Choosing Yearly:</label>
             <input type="range" id="percent-yearly" min="0" max="100" value="50">
             <span id="percent-yearly-value">50%</span>
         </div>
+
         <!-- General Conversion Rate -->
         <div class="input-group">
             <label>General Conversion Rate (%):</label>
             <input type="number" id="conversion-rate" value="25">
         </div>
+
+        <!-- Average Subscription Periods -->
+        <div class="input-group">
+            <label>Average Subscription Duration (Months):</label>
+            <input type="number" id="avg-subscription-months" value="12">
+        </div>
+        <div class="input-group">
+            <label>Average Subscription Duration (Years):</label>
+            <input type="number" id="avg-subscription-years" value="1">
+        </div>
+
         <!-- Monthly Plan Details -->
         <div class="input-group">
             <label>Monthly Price:</label>
@@ -34,6 +48,7 @@
             <label>Introductory Period (Months):</label>
             <input type="number" id="monthly-intro-period" value="3">
         </div>
+
         <!-- Yearly Plan Details -->
         <div class="input-group">
             <label>Yearly Price:</label>
@@ -43,14 +58,16 @@
             <label>Introductory Period (Years):</label>
             <input type="number" id="yearly-intro-period" value="1">
         </div>
+
         <!-- Result Display -->
         <div class="result-display">
             <h2>Estimated Revenue:</h2>
             <div id="result">0</div>
         </div>
+
         <!-- Breakdown Display -->
         <div class="breakdown-display">
-            <h2>Breakdown:</h2>
+            <h2>Calculation Breakdown:</h2>
             <div id="breakdown">...</div>
         </div>
     </div>
